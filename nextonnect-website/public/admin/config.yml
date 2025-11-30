@@ -2,7 +2,7 @@ backend:
   name: github
   repo: MaazHussaini99/safety
   branch: claude/nextonnect-website-build-011sZkmZv7nPGgZXruSF6gXc
-  base_url: https://oauth-ashen.vercel.app/
+  base_url: https://oauth-ashen.vercel.app
 
 # Enable editorial workflow (Draft → Review → Publish)
 publish_mode: editorial_workflow
