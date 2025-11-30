@@ -2,12 +2,13 @@ backend:
   name: github
   repo: MaazHussaini99/safety
   branch: claude/nextonnect-website-build-011sZkmZv7nPGgZXruSF6gXc
-  base_url: https://safety-git-claude-nextonnect-websit-379d31-nextonnects-projects.vercel.app/
-  # Enable open authoring for GitHub authentication
-  open_authoring: true
+  base_url: https://safety-git-claude-nextonnect-websit-379d31-nextonnects-projects.vercel.app
+
+# Enable editorial workflow (Draft → Review → Publish)
+publish_mode: editorial_workflow
 
 # For local development, uncomment below and run: npx decap-server
-# local_backend: true
+local_backend: true
 
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
