@@ -49,10 +49,7 @@ export default async function handler(req, res) {
     }
 
     // Return HTML that posts message to parent window
-    const message = {
-      token: data.access_token,
-      provider: provider || 'github',
-    };
+    const token = data.access_token;
 
     const html = `
       <!DOCTYPE html>
@@ -62,21 +59,30 @@ export default async function handler(req, res) {
       <p>Authorization successful! This window should close automatically...</p>
       <script>
         (function() {
-          const message = ${JSON.stringify(message)};
+          const data = {
+            token: "${token}",
+            provider: "github"
+          };
+
+          console.log("Posting message to parent:", data);
 
           // Post message to opener
           if (window.opener) {
+            // Send the authorization success message
             window.opener.postMessage(
-              'authorization:github:success:' + JSON.stringify(message),
-              '*'
+              "authorization:github:success:" + JSON.stringify(data),
+              "*"
             );
+
+            console.log("Message posted, closing window...");
 
             // Close window after a short delay
             setTimeout(function() {
               window.close();
             }, 1000);
           } else {
-            document.body.innerHTML = '<p>Please close this window and return to the CMS.</p>';
+            console.error("No window.opener found");
+            document.body.innerHTML = '<p>Error: Please close this window and return to the CMS.</p>';
           }
         })();
       </script>
