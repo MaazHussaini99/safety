@@ -2,6 +2,7 @@ backend:
   name: github
   repo: MaazHussaini99/safety
   branch: claude/nextonnect-website-build-011sZkmZv7nPGgZXruSF6gXc
+  base_url: https://safety-git-claude-nextonnect-websit-379d31-nextonnects-projects.vercel.app/
   # Enable open authoring for GitHub authentication
   open_authoring: true
 
