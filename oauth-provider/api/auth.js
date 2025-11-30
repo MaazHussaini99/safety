@@ -8,11 +8,7 @@ export default async function handler(req, res) {
     return res.status(200).end();
   }
 
-  const { code } = req.query;
-
-  if (!code) {
-    return res.status(400).json({ error: 'Missing code parameter' });
-  }
+  const { code, provider } = req.query;
 
   const {
     OAUTH_CLIENT_ID: clientId,
@@ -21,6 +17,14 @@ export default async function handler(req, res) {
 
   if (!clientId || !clientSecret) {
     return res.status(500).json({ error: 'OAuth credentials not configured' });
+  }
+
+  // If no code, redirect to GitHub OAuth
+  if (!code) {
+    const redirectUri = `${req.headers['x-forwarded-proto'] || 'https'}://${req.headers.host}/api/auth`;
+    const authUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=repo`;
+
+    return res.redirect(authUrl);
   }
 
   try {
@@ -47,14 +51,18 @@ export default async function handler(req, res) {
     // Return HTML that posts message to parent window
     const content = {
       token: data.access_token,
-      provider: 'github',
+      provider: provider || 'github',
     };
 
     const script = `
+      <!DOCTYPE html>
+      <html>
+      <head><title>Authorizing...</title></head>
+      <body>
       <script>
         (function() {
           function receiveMessage(e) {
-            console.log("receiveMessage %o", e);
+            console.log("receiveMessage", e);
             window.opener.postMessage(
               'authorization:github:success:${JSON.stringify(content)}',
               e.origin
@@ -62,10 +70,12 @@ export default async function handler(req, res) {
             window.removeEventListener("message", receiveMessage, false);
           }
           window.addEventListener("message", receiveMessage, false);
-          console.log("Sending message: %o", "authorizing:github");
+          console.log("Sending message: authorizing:github");
           window.opener.postMessage("authorizing:github", "*");
         })();
       </script>
+      </body>
+      </html>
     `;
 
     res.status(200).send(script);
