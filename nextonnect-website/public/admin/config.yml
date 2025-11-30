@@ -1,9 +1,12 @@
 backend:
-  name: git-gateway
-  branch: main # or your default branch
+  name: github
+  repo: MaazHussaini99/safety
+  branch: claude/nextonnect-website-build-011sZkmZv7nPGgZXruSF6gXc
+  # Enable open authoring for GitHub authentication
+  open_authoring: true
 
-# Optional: use this for local development
-local_backend: true
+# For local development, uncomment below and run: npx decap-server
+# local_backend: true
 
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
