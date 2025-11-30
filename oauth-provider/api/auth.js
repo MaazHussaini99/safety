@@ -59,25 +59,50 @@ export default async function handler(req, res) {
   <title>Authorizing...</title>
   <script>
     (function() {
+      console.log("OAuth callback page loaded");
+      console.log("window.opener exists:", !!window.opener);
+
+      if (!window.opener) {
+        document.body.innerHTML = '<p>Error: No parent window found. Please close this window.</p>';
+        return;
+      }
+
+      var messageSent = false;
+
       function receiveMessage(e) {
-        console.log("receiveMessage", e);
-        // Reply to the CMS
-        window.opener.postMessage(
-          'authorization:github:success:{"token":"${token}","provider":"github"}',
-          e.origin
-        );
+        console.log("Received message from CMS:", e.data, "from origin:", e.origin);
+
+        if (!messageSent) {
+          messageSent = true;
+          // Reply to the CMS
+          var response = 'authorization:github:success:{"token":"${token}","provider":"github"}';
+          console.log("Sending response:", response);
+          window.opener.postMessage(response, e.origin);
+
+          // Close window after sending
+          setTimeout(function() {
+            window.close();
+          }, 1000);
+        }
       }
 
       window.addEventListener("message", receiveMessage, false);
 
       // Notify the CMS that we're ready
-      console.log("Notifying parent window...");
+      console.log("Notifying parent window with 'authorizing:github'");
       window.opener.postMessage("authorizing:github", "*");
+
+      // Fallback: close window after 5 seconds if no response
+      setTimeout(function() {
+        console.log("Timeout reached, closing window");
+        window.close();
+      }, 5000);
     })();
   </script>
 </head>
 <body>
-  <p>Authorized! This window should close automatically.</p>
+  <p>Authorized! This window should close automatically...</p>
+  <p><small>If it doesn't close, you can close it manually.</small></p>
 </body>
 </html>
     `;
