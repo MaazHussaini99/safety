@@ -49,36 +49,42 @@ export default async function handler(req, res) {
     }
 
     // Return HTML that posts message to parent window
-    const content = {
+    const message = {
       token: data.access_token,
       provider: provider || 'github',
     };
 
-    const script = `
+    const html = `
       <!DOCTYPE html>
       <html>
-      <head><title>Authorizing...</title></head>
+      <head><title>Success!</title></head>
       <body>
+      <p>Authorization successful! This window should close automatically...</p>
       <script>
         (function() {
-          function receiveMessage(e) {
-            console.log("receiveMessage", e);
+          const message = ${JSON.stringify(message)};
+
+          // Post message to opener
+          if (window.opener) {
             window.opener.postMessage(
-              'authorization:github:success:${JSON.stringify(content)}',
-              e.origin
+              'authorization:github:success:' + JSON.stringify(message),
+              '*'
             );
-            window.removeEventListener("message", receiveMessage, false);
+
+            // Close window after a short delay
+            setTimeout(function() {
+              window.close();
+            }, 1000);
+          } else {
+            document.body.innerHTML = '<p>Please close this window and return to the CMS.</p>';
           }
-          window.addEventListener("message", receiveMessage, false);
-          console.log("Sending message: authorizing:github");
-          window.opener.postMessage("authorizing:github", "*");
         })();
       </script>
       </body>
       </html>
     `;
 
-    res.status(200).send(script);
+    res.status(200).send(html);
   } catch (error) {
     console.error('OAuth error:', error);
     res.status(500).json({ error: error.message });
