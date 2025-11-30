@@ -51,6 +51,9 @@ export default async function handler(req, res) {
     // Return HTML that posts message to parent window
     const token = data.access_token;
 
+    // Build the OAuth response message on the server side
+    const responseMessage = `authorization:github:success:${JSON.stringify({ token, provider: 'github' })}`;
+
     const html = `
 <!DOCTYPE html>
 <html>
@@ -68,14 +71,13 @@ export default async function handler(req, res) {
       }
 
       var messageSent = false;
+      var response = ${JSON.stringify(responseMessage)};
 
       function receiveMessage(e) {
         console.log("Received message from CMS:", e.data, "from origin:", e.origin);
 
         if (!messageSent) {
           messageSent = true;
-          // Reply to the CMS
-          var response = 'authorization:github:success:{"token":"${token}","provider":"github"}';
           console.log("Sending response:", response);
           window.opener.postMessage(response, e.origin);
 
