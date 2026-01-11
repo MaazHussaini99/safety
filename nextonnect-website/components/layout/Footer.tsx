@@ -25,9 +25,16 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="col-span-1 md:col-span-1">
-            <div className="text-2xl font-bold mb-4">
-              <span className="text-brand-blue-500">Next</span>
-              <span className="text-brand-yellow-500">onnect</span>
+            <div className="flex items-center space-x-2 mb-4">
+              <img
+                src="/logo.png"
+                alt="Nextonnect Logo"
+                className="h-10 w-auto"
+              />
+              <div className="text-xl font-bold">
+                <span className="text-brand-blue-500">Next</span>
+                <span className="text-brand-yellow-500">onnect</span>
+              </div>
             </div>
             <p className="text-gray-400 text-sm">
               Connecting talent, technology, compliance, and training to drive

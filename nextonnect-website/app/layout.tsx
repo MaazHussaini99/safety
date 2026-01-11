@@ -7,6 +7,10 @@ export const metadata: Metadata = {
   title: "Nextonnect - Talent, Technology, Compliance & Training Solutions",
   description: "Nextonnect provides comprehensive solutions in talent acquisition, technology services, compliance management, and professional training to drive your business forward.",
   keywords: "talent solutions, technology consulting, compliance management, professional training, workforce development",
+  icons: {
+    icon: '/logo.png',
+    apple: '/logo.png',
+  },
 };
 
 export default function RootLayout({
