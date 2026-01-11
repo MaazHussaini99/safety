@@ -21,7 +21,7 @@ export default function ContactPage() {
 
     try {
       // Send email using formsubmit.co service
-      const response = await fetch('https://formsubmit.co/info@nextonnect.com', {
+      const response = await fetch('https://formsubmit.co/admin@nextonnect.com', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -296,7 +296,7 @@ export default function ContactPage() {
                 {submitStatus === 'error' && (
                   <div className="p-4 bg-red-50 border border-red-200 rounded-md">
                     <p className="text-red-800 font-medium">
-                      ✗ Something went wrong. Please try again or email us directly at info@nextonnect.com
+                      ✗ Something went wrong. Please try again or email us directly at admin@nextonnect.com
                     </p>
                   </div>
                 )}
