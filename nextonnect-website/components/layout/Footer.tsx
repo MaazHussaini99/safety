@@ -74,7 +74,7 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Contact</h3>
             <ul className="space-y-2 text-sm text-gray-400">
               <li>Email: info@nextonnect.com</li>
-              <li>Phone: (555) 123-4567</li>
+              <li>Phone: 826-255-8238</li>
               <li className="mt-4">
                 <div className="flex space-x-4">
                   <a
@@ -82,12 +82,6 @@ export default function Footer() {
                     className="hover:text-brand-yellow-500 transition-colors"
                   >
                     LinkedIn
-                  </a>
-                  <a
-                    href="#"
-                    className="hover:text-brand-yellow-500 transition-colors"
-                  >
-                    Twitter
                   </a>
                 </div>
               </li>
@@ -99,7 +93,7 @@ export default function Footer() {
         <div className="mt-8 pt-8 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
-              © {new Date().getFullYear()} Nextonnect. All rights reserved.
+              © 2026 Nextonnect. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               {footerLinks.legal.map((link) => (
