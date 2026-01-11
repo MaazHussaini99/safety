@@ -1,4 +1,3 @@
-import { getContentBySlug } from '@/lib/markdown';
 import Hero from '@/components/ui/Hero';
 
 export const metadata = {
@@ -7,9 +6,7 @@ export const metadata = {
     'Comprehensive talent acquisition and management solutions to build exceptional teams.',
 };
 
-export default async function TalentPage() {
-  const content = await getContentBySlug('talent', 'overview');
-
+export default function TalentPage() {
   return (
     <>
       <Hero
@@ -21,18 +18,86 @@ export default async function TalentPage() {
 
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <article
-            className="prose prose-lg max-w-none
-              prose-headings:text-gray-900
-              prose-h1:text-4xl prose-h1:font-bold prose-h1:mb-6
-              prose-h2:text-3xl prose-h2:font-bold prose-h2:mt-12 prose-h2:mb-4 prose-h2:text-brand-blue-800
-              prose-h3:text-2xl prose-h3:font-semibold prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-brand-blue-700
-              prose-p:text-gray-600 prose-p:leading-relaxed prose-p:mb-4
-              prose-ul:my-6 prose-ul:space-y-2
-              prose-li:text-gray-600
-              prose-strong:text-gray-900 prose-strong:font-semibold"
-            dangerouslySetInnerHTML={{ __html: content?.content || '' }}
-          />
+          <div className="prose prose-lg max-w-none">
+            <h2 className="text-3xl font-bold text-brand-blue-800 mb-6">
+              Talent Solutions
+            </h2>
+            <p className="text-gray-600 leading-relaxed mb-6">
+              At Nextonnect, we specialize in identifying, nurturing, and placing
+              top-tier talent across industries. Our comprehensive talent solutions
+              ensure that businesses find the right people to drive their success.
+            </p>
+
+            <h2 className="text-3xl font-bold text-brand-blue-800 mb-6 mt-12">
+              Our Approach
+            </h2>
+            <p className="text-gray-600 leading-relaxed mb-6">
+              We believe in a holistic approach to talent management that goes
+              beyond simple recruitment. Our team works closely with both candidates
+              and employers to create meaningful connections that benefit everyone
+              involved.
+            </p>
+
+            <h2 className="text-3xl font-bold text-brand-blue-800 mb-6 mt-12">
+              Key Services
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+              <div className="bg-gray-50 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  Talent Acquisition
+                </h3>
+                <p className="text-gray-600">
+                  Sourcing and recruiting top professionals
+                </p>
+              </div>
+              <div className="bg-gray-50 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  Talent Development
+                </h3>
+                <p className="text-gray-600">
+                  Training and upskilling programs
+                </p>
+              </div>
+              <div className="bg-gray-50 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  Workforce Planning
+                </h3>
+                <p className="text-gray-600">
+                  Strategic hiring and resource allocation
+                </p>
+              </div>
+              <div className="bg-gray-50 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  Executive Search
+                </h3>
+                <p className="text-gray-600">
+                  Finding leaders who can drive transformation
+                </p>
+              </div>
+            </div>
+
+            <h2 className="text-3xl font-bold text-brand-blue-800 mb-6 mt-12">
+              Why Choose Our Talent Solutions?
+            </h2>
+            <div className="space-y-4 mt-6">
+              <p className="text-gray-600 leading-relaxed">
+                Extensive network of qualified professionals
+              </p>
+              <p className="text-gray-600 leading-relaxed">
+                Industry-specific expertise
+              </p>
+              <p className="text-gray-600 leading-relaxed">
+                Rigorous screening and vetting processes
+              </p>
+              <p className="text-gray-600 leading-relaxed">
+                Ongoing support and relationship management
+              </p>
+            </div>
+
+            <p className="text-gray-600 leading-relaxed mt-8">
+              Let us help you build a team that propels your organization forward.
+            </p>
+          </div>
         </div>
       </section>
 

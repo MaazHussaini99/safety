@@ -1,4 +1,3 @@
-import { getContentBySlug } from '@/lib/markdown';
 import Hero from '@/components/ui/Hero';
 
 export const metadata = {
@@ -7,9 +6,7 @@ export const metadata = {
     'Comprehensive compliance management to meet regulatory requirements and minimize risk.',
 };
 
-export default async function CompliancePage() {
-  const content = await getContentBySlug('compliance', 'overview');
-
+export default function CompliancePage() {
   return (
     <>
       <Hero
@@ -21,18 +18,160 @@ export default async function CompliancePage() {
 
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <article
-            className="prose prose-lg max-w-none
-              prose-headings:text-gray-900
-              prose-h1:text-4xl prose-h1:font-bold prose-h1:mb-6
-              prose-h2:text-3xl prose-h2:font-bold prose-h2:mt-12 prose-h2:mb-4 prose-h2:text-brand-blue-800
-              prose-h3:text-2xl prose-h3:font-semibold prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-brand-blue-700
-              prose-p:text-gray-600 prose-p:leading-relaxed prose-p:mb-4
-              prose-ul:my-6 prose-ul:space-y-2
-              prose-li:text-gray-600
-              prose-strong:text-gray-900 prose-strong:font-semibold"
-            dangerouslySetInnerHTML={{ __html: content?.content || '' }}
-          />
+          <div className="prose prose-lg max-w-none">
+            <h2 className="text-3xl font-bold text-brand-blue-800 mb-6">
+              Compliance Solutions
+            </h2>
+            <p className="text-gray-600 leading-relaxed mb-6">
+              Navigate the complex regulatory landscape with confidence.
+              Nextonnect&apos;s compliance solutions help organizations meet their
+              obligations while minimizing risk and maintaining operational
+              efficiency.
+            </p>
+
+            <h2 className="text-3xl font-bold text-brand-blue-800 mb-6 mt-12">
+              Comprehensive Compliance Management
+            </h2>
+            <p className="text-gray-600 leading-relaxed mb-6">
+              We provide end-to-end compliance services tailored to your industry
+              and specific regulatory requirements. Our expert team stays current
+              with evolving regulations to keep you compliant.
+            </p>
+
+            <h2 className="text-3xl font-bold text-brand-blue-800 mb-6 mt-12">
+              Service Areas
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+              <div className="bg-gray-50 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  Regulatory Compliance
+                </h3>
+                <p className="text-gray-600">
+                  Meeting industry-specific requirements
+                </p>
+              </div>
+              <div className="bg-gray-50 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  Risk Assessment
+                </h3>
+                <p className="text-gray-600">
+                  Identifying and mitigating compliance risks
+                </p>
+              </div>
+              <div className="bg-gray-50 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  Policy Development
+                </h3>
+                <p className="text-gray-600">
+                  Creating comprehensive compliance frameworks
+                </p>
+              </div>
+              <div className="bg-gray-50 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  Training & Awareness
+                </h3>
+                <p className="text-gray-600">
+                  Educating your team on compliance matters
+                </p>
+              </div>
+              <div className="bg-gray-50 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  Audit Support
+                </h3>
+                <p className="text-gray-600">
+                  Preparing for and managing regulatory audits
+                </p>
+              </div>
+            </div>
+
+            <h2 className="text-3xl font-bold text-brand-blue-800 mb-6 mt-12">
+              Industry Experience
+            </h2>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              Our compliance professionals have extensive experience across multiple
+              sectors including:
+            </p>
+            <div className="space-y-4 mt-6">
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <p className="text-gray-900 font-semibold mb-1">
+                  Site Safety Management & Staffing
+                </p>
+                <p className="text-gray-600 text-sm">
+                  Short-term or long-term placements
+                </p>
+              </div>
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <p className="text-gray-900 font-semibold mb-1">
+                  OSHA / EM 385-1-1 / NFPA / Owner-Specific Compliance Support
+                </p>
+                <p className="text-gray-600 text-sm">
+                  Comprehensive regulatory compliance
+                </p>
+              </div>
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <p className="text-gray-900 font-semibold mb-1">
+                  Audits, Inspections, and Field Training
+                </p>
+                <p className="text-gray-600 text-sm">
+                  On-site compliance verification
+                </p>
+              </div>
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <p className="text-gray-900 font-semibold mb-1">
+                  Safety Program Development
+                </p>
+                <p className="text-gray-600 text-sm">
+                  SSSPs, JHAs, PTPs, crisis plans
+                </p>
+              </div>
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <p className="text-gray-900 font-semibold mb-1">
+                  Rapid 24-48 Hour Placement
+                </p>
+                <p className="text-gray-600 text-sm">
+                  For urgent project needs
+                </p>
+              </div>
+            </div>
+            <div className="space-y-2 mt-6">
+              <p className="text-gray-600 leading-relaxed">
+                Healthcare (HIPAA, HITECH)
+              </p>
+              <p className="text-gray-600 leading-relaxed">
+                Financial Services (SOX, PCI-DSS)
+              </p>
+              <p className="text-gray-600 leading-relaxed">
+                Construction & Safety (OSHA)
+              </p>
+              <p className="text-gray-600 leading-relaxed">
+                Environmental Regulations
+              </p>
+            </div>
+
+            <h2 className="text-3xl font-bold text-brand-blue-800 mb-6 mt-12">
+              Why Partner With Us?
+            </h2>
+            <div className="space-y-4 mt-6">
+              <p className="text-gray-600 leading-relaxed">
+                Proactive compliance monitoring
+              </p>
+              <p className="text-gray-600 leading-relaxed">
+                Expert guidance on regulatory changes
+              </p>
+              <p className="text-gray-600 leading-relaxed">
+                Customized compliance programs
+              </p>
+              <p className="text-gray-600 leading-relaxed">
+                Reduced compliance costs
+              </p>
+              <p className="text-gray-600 leading-relaxed">Peace of mind</p>
+            </div>
+
+            <p className="text-gray-600 leading-relaxed mt-8">
+              Let us handle the complexity of compliance so you can focus on growing
+              your business.
+            </p>
+          </div>
         </div>
       </section>
 
