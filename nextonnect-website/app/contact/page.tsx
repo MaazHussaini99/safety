@@ -43,7 +43,7 @@ export default function ContactPage() {
         title="Get in Touch"
         subtitle="Let's discuss how we can help your business succeed"
         ctaText="Call Us"
-        ctaLink="tel:+15551234567"
+        ctaLink="tel:+18262558238"
       />
 
       <section className="py-20 bg-gray-50">
@@ -83,7 +83,7 @@ export default function ContactPage() {
                       Email
                     </h3>
                     <p className="text-gray-600">info@nextonnect.com</p>
-                    <p className="text-gray-600">support@nextonnect.com</p>
+                    <p className="text-gray-600">admin@nextonnect.com</p>
                   </div>
                 </div>
 
@@ -109,7 +109,7 @@ export default function ContactPage() {
                     <h3 className="text-lg font-semibold text-gray-900">
                       Phone
                     </h3>
-                    <p className="text-gray-600">(555) 123-4567</p>
+                    <p className="text-gray-600">826-255-8238</p>
                     <p className="text-gray-600">Mon-Fri 8:00 AM - 6:00 PM</p>
                   </div>
                 </div>
@@ -142,9 +142,7 @@ export default function ContactPage() {
                     <h3 className="text-lg font-semibold text-gray-900">
                       Office
                     </h3>
-                    <p className="text-gray-600">123 Business Avenue</p>
-                    <p className="text-gray-600">Suite 100</p>
-                    <p className="text-gray-600">Your City, ST 12345</p>
+                    <p className="text-gray-600">Irving, TX</p>
                   </div>
                 </div>
               </div>
