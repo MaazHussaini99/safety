@@ -19,13 +19,13 @@ export default function Navigation() {
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-20">
+        <div className="flex justify-between h-24">
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-3">
               <img
                 src="/logo.png"
                 alt="Nextonnect Logo"
-                className="h-16 w-auto"
+                className="h-20 w-auto"
               />
               <div className="text-2xl font-bold">
                 <span className="text-brand-blue-800">Next</span>
