@@ -11,19 +11,54 @@ export default function ContactPage() {
     service: '',
     message: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real application, you would send this data to your backend
-    console.log('Form submitted:', formData);
-    alert('Thank you for your interest! We will contact you soon.');
-    setFormData({
-      name: '',
-      email: '',
-      company: '',
-      service: '',
-      message: '',
-    });
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      // Send email using formsubmit.co service
+      const response = await fetch('https://formsubmit.co/info@nextonnect.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          company: formData.company || 'Not provided',
+          service: formData.service || 'Not specified',
+          message: formData.message,
+          _subject: `New Contact Form Submission from ${formData.name}`,
+          _template: 'table',
+          _captcha: 'false'
+        })
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          service: '',
+          message: '',
+        });
+        // Clear success message after 5 seconds
+        setTimeout(() => setSubmitStatus('idle'), 5000);
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -248,11 +283,30 @@ export default function ContactPage() {
                   />
                 </div>
 
+                {/* Success Message */}
+                {submitStatus === 'success' && (
+                  <div className="p-4 bg-green-50 border border-green-200 rounded-md">
+                    <p className="text-green-800 font-medium">
+                      ✓ Thank you for your message! We&apos;ll get back to you soon.
+                    </p>
+                  </div>
+                )}
+
+                {/* Error Message */}
+                {submitStatus === 'error' && (
+                  <div className="p-4 bg-red-50 border border-red-200 rounded-md">
+                    <p className="text-red-800 font-medium">
+                      ✗ Something went wrong. Please try again or email us directly at info@nextonnect.com
+                    </p>
+                  </div>
+                )}
+
                 <button
                   type="submit"
-                  className="w-full px-8 py-4 rounded-md text-lg font-medium text-white bg-brand-blue-800 hover:bg-brand-blue-900 transition-colors"
+                  disabled={isSubmitting}
+                  className="w-full px-8 py-4 rounded-md text-lg font-medium text-white bg-brand-blue-800 hover:bg-brand-blue-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Send Message
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
               </form>
             </div>
