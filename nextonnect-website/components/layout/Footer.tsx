@@ -33,7 +33,7 @@ export default function Footer() {
               />
               <div className="text-xl font-bold">
                 <span className="text-brand-blue-500">Next</span>
-                <span className="text-brand-yellow-500">onnect</span>
+                <span className="text-brand-yellow-600">onnect</span>
               </div>
             </div>
             <p className="text-gray-400 text-sm">
